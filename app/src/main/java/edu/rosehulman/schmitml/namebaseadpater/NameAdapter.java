@@ -35,7 +35,22 @@ public class NameAdapter extends BaseAdapter {
         return names[mRandom.nextInt(names.length)];
     }
 
+    /**
+     * Adds a random name at the first position and updates the view
+     */
+    public void add(){
+        mNames.add(0,getRandomName());
+        notifyDataSetChanged();
+    }
 
+    /**
+     * Removes the name at a give position and updates the view
+     * @param pos
+     */
+    public void remove(int pos){
+        mNames.remove(pos);
+        notifyDataSetChanged();
+    }
 
     @Override
     public int getCount() {
@@ -69,8 +84,7 @@ public class NameAdapter extends BaseAdapter {
         String name = mNames.get(position);
 
         nameTextView.setText(name);
-        positionTextView.setText("I'm #" + position);
-
+        positionTextView.setText("I'm #" + (position+1));
         return view;
     }
 }
